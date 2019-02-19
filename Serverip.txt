@@ -1,0 +1,53 @@
+localhost:8080/users/2 for local setup
+allow ports request on server before deplyment 
+default port 8080
+SSH default port 22  
+
+
+
+/******DataBase structure***/
+
+INSERT INTO Users (user_id,user_name,user_password,user_wifi,user_wifi_password, user_wifi_coords, reserved_int, reserved_str, user_type) VALUES (?,?,?,?)
+
+
+INSERT INTO Users (user_id,user_name,user_password,user_wifi,user_wifi_password, user_wifi_coords, reserved_int, reserved_str, user_type) VALUES (0,"test","test","test", "test", 1, 1, "1", 1);
+
+
+
+/**Request json data ***/
+GET
+-support for
+	 /users
+	 /users/[user_id]
+
+POST (add new record)
+-expected data
+	 \users
+	
+	['user_name=', 'user_password=', 'user_wifi=?', 'user_wifi_password=' , 'user_wifi_coords=?', 'user_reserved_int=?', 'user_reserved_str=?', 'user_type=?']
+
+	\login
+	['user_name', 'user_password']
+
+-PUT (update or replace user, it updates by user_id)
+-expected data
+	['user_id=?','user_name=', 'user_password=', 'user_wifi=?', 'user_wifi_password=', 'user_wifi=', 'user_wifi_password=', 'user_wifi_coords=?', 'user_reserved_int=?', 'user_reserved_str=?', 'user_type=?']
+
+-DELETE (by user_id)
+-expected data
+	['user_id=?']
+
+-UNSUPPORTED HTTPS REQUESTS
+COPT, HEAD,LINK,PATCH,UNLINK,PURGE,LOCK,PROPFIND, VIEW
+
+/****Problems??***/
+
+each user has ONLY one wifi, since there is only one data table, no one to many table relation.
+aws is unrelaible since the first instance went down? after allowing all request types to the server.
+a way to let the API python app running instead of SSH into the server and running it.
+
+
+
+/*** Good Attributes**/
+-User authenticating has been added.
+-user password is hashed.
